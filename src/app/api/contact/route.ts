@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Contact API endpoint - sends email to Adil Faiyaz
 export async function POST(request: NextRequest) {
@@ -76,6 +74,7 @@ Reply directly to this email to respond to ${name}.
     }
 
     // Send email via Resend
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
       from: "SDA Intelligence <noreply@resend.dev>", // Use your verified domain later
       to: ["adil.faiyaz@consultsda.com"],
